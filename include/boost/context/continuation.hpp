@@ -8,6 +8,8 @@
 #include <boost/context/continuation_ucontext.hpp>
 #elif defined(BOOST_USE_WINFIB)
 #include <boost/context/continuation_winfib.hpp>
+#elif defined(BOOST_USE_EMSCRIPTEN_FIBER)
+#include <boost/context/continuation_emscripten.hpp>
 #else
 #include <boost/context/continuation_fcontext.hpp>
 #endif

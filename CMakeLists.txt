@@ -109,10 +109,14 @@ unset(_default_ext)
 
 ## Implementation
 
-set(_default_impl fcontext)
+if(EMSCRIPTEN)
+  set(_default_impl emscripten)
+else()
+  set(_default_impl fcontext)
+endif()
 
-set(BOOST_CONTEXT_IMPLEMENTATION "${_default_impl}" CACHE STRING "Boost.Context implementation (fcontext, ucontext, winfib)")
-set_property(CACHE BOOST_CONTEXT_IMPLEMENTATION PROPERTY STRINGS fcontext ucontext winfib)
+set(BOOST_CONTEXT_IMPLEMENTATION "${_default_impl}" CACHE STRING "Boost.Context implementation (fcontext, ucontext, winfib, emscripten)")
+set_property(CACHE BOOST_CONTEXT_IMPLEMENTATION PROPERTY STRINGS fcontext ucontext winfib emscripten)
 
 unset(_default_impl)
 
@@ -223,6 +227,10 @@ endif()
 
 if(BOOST_CONTEXT_IMPLEMENTATION STREQUAL "winfib")
   target_compile_definitions(boost_context PUBLIC BOOST_USE_WINFIB)
+endif()
+
+if(BOOST_CONTEXT_IMPLEMENTATION STREQUAL "emscripten")
+  target_compile_definitions(boost_context PUBLIC BOOST_USE_EMSCRIPTEN_FIBER)
 endif()
 
 if(BUILD_TESTING AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/test/CMakeLists.txt")
