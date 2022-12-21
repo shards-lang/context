@@ -176,7 +176,7 @@ if(BOOST_CONTEXT_IMPLEMENTATION STREQUAL "fcontext")
 else()
   set(IMPL_SOURCES
     src/continuation.cpp
-    src/fiber.cpp
+    # src/fiber.cpp
   )
 endif()
 

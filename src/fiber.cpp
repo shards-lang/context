@@ -8,6 +8,8 @@
 #include "boost/context/fiber_ucontext.hpp"
 #elif defined(BOOST_USE_WINFIB)
 #include "boost/context/fiber_winfib.hpp"
+#elif defined(BOOST_USE_EMSCRIPTEN_FIBER)
+#include "boost/context/fiber_emscripten.hpp"
 #endif
 
 #include <boost/config.hpp>
